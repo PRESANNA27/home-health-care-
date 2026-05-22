@@ -409,6 +409,238 @@ footer{background:linear-gradient(135deg,#071a0b 0%,#0d3b18 60%,#1a5c2a 100%);co
   .hero-content{padding:100px 20px 60px}
   .stats-grid{grid-template-columns:1fr 1fr}
   .footer-grid{grid-template-columns:1fr}
+  /* hero fixes */
+  .hero-title{font-size:36px}
+  .hero-tagline{font-size:18px}
+  .hero-subtitle{font-size:15px}
+  .hero-stats{gap:16px;flex-wrap:wrap;justify-content:center}
+  .hero-stat-num{font-size:28px}
+  .btn-primary,.btn-secondary{padding:14px 22px;font-size:15px}
+  .hero-cta-group{flex-direction:column;align-items:center;gap:12px}
+  /* about */
+  .about-image-collage{height:280px}
+  .about-badge-float{right:0;top:auto;bottom:-10px}
+  .about-features{grid-template-columns:1fr}
+  /* why */
+  .why-main-img{height:320px}
+  .why-badge-float{left:10px;bottom:10px}
+  /* contact */
+  .contact-info{padding:28px 20px}
+  .contact-form{padding:28px 20px}
+  /* stats */
+  .stat-num{font-size:36px}
+  .stats-section{padding:48px 20px}
+  /* testimonials */
+  .testimonial-card{min-width:calc(100vw - 60px)}
+  /* footer */
+  footer{padding:56px 20px 24px}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+  /* floating buttons */
+  .float-whatsapp{bottom:20px;right:16px;width:54px;height:54px;font-size:24px}
+  .float-call{bottom:88px;right:16px;width:46px;height:46px;font-size:19px}
+  .scroll-top{bottom:20px;left:16px}
+  /* section text */
+  .section-title{font-size:28px}
+  .section-desc{font-size:15px}
+  /* modal */
+  .modal-box{max-height:95vh;border-radius:16px}
+  .modal-hero{height:180px}
+  .modal-content{padding:20px}
+  .modal-title{font-size:22px}
+  .modal-cta{flex-direction:column}
+  /* doctors */
+  .doctor-img-wrap{height:220px}
+  /* google reviews */
+  .google-reviews{padding:40px 16px}
+  /* map */
+  .map-frame{height:280px}
+  /* process */
+  .process-grid{gap:16px}
+  /* benefits */
+  .benefits-section{padding:56px 20px}
+  /* hide cursor on mobile */
+  .cursor,.cursor-follower{display:none}
+}
+@media(max-width:480px){
+  .hero-title{font-size:30px}
+  .hero-badge{font-size:11px;padding:6px 14px}
+  .section-title{font-size:24px}
+  .hero-stats{gap:10px}
+  .hero-stat-num{font-size:24px}
+  .stat-num{font-size:30px}
+  .stat-card{padding:28px 12px}
+  .about-image-collage{height:220px}
+  .modal-wa-btn,.modal-call-btn{padding:12px 18px;font-size:14px}
+  .contact-info-title{font-size:22px}
+  .form-title{font-size:20px}
+  .google-badge{flex-direction:column;gap:8px;padding:12px 18px}
+  .google-rating .num{font-size:28px}
+  footer{padding:40px 14px 20px}
+}
+
+/* ===================== BOOKING POPUP ===================== */
+#bookingPopup{
+  position:fixed;inset:0;z-index:9000;
+  display:flex;align-items:center;justify-content:center;
+  padding:16px;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(6px);
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease;
+}
+#bookingPopup.show{opacity:1;pointer-events:all}
+.popup-box{
+  background:white;
+  border-radius:28px;
+  width:100%;max-width:500px;
+  overflow:hidden;
+  box-shadow:0 32px 80px rgba(0,0,0,.4);
+  transform:scale(.88) translateY(30px);
+  transition:all .45s cubic-bezier(.34,1.56,.64,1);
+  position:relative;
+}
+#bookingPopup.show .popup-box{transform:scale(1) translateY(0)}
+.popup-header{
+  background:linear-gradient(135deg,var(--forest) 0%,var(--green) 60%,var(--leaf) 100%);
+  padding:32px 28px 24px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.popup-header::before{
+  content:'🌿';
+  position:absolute;top:-10px;right:-10px;
+  font-size:90px;opacity:.1;
+  transform:rotate(20deg);
+}
+.popup-header::after{
+  content:'🍃';
+  position:absolute;bottom:-10px;left:-10px;
+  font-size:70px;opacity:.1;
+  transform:rotate(-20deg);
+}
+.popup-icon{
+  width:64px;height:64px;
+  background:rgba(255,255,255,.18);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;
+  margin:0 auto 14px;
+  backdrop-filter:blur(10px);
+  border:2px solid rgba(255,255,255,.3);
+}
+.popup-title{
+  font-family:'Playfair Display',serif;
+  font-size:24px;font-weight:700;
+  color:white;line-height:1.2;
+  margin-bottom:6px;
+}
+.popup-subtitle{
+  font-size:13px;color:rgba(255,255,255,.8);
+  letter-spacing:.5px;
+}
+.popup-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.25);
+  color:var(--mint);
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  padding:5px 14px;border-radius:20px;
+  margin-top:10px;text-transform:uppercase;
+}
+.popup-body{padding:28px 28px 24px}
+.popup-form-group{
+  display:flex;flex-direction:column;gap:6px;
+  margin-bottom:14px;
+}
+.popup-form-group label{
+  font-size:12px;font-weight:700;color:var(--text);
+  text-transform:uppercase;letter-spacing:.5px;
+}
+.popup-form-group input,
+.popup-form-group select{
+  padding:12px 16px;
+  border:2px solid rgba(76,175,80,.2);
+  border-radius:12px;
+  font-family:'Nunito',sans-serif;
+  font-size:14px;color:var(--text);
+  background:var(--ultra-pale);
+  transition:all .3s;outline:none;
+}
+.popup-form-group input:focus,
+.popup-form-group select:focus{
+  border-color:var(--leaf);
+  background:white;
+  box-shadow:0 0 0 4px rgba(76,175,80,.1);
+}
+.popup-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.popup-wa-btn{
+  width:100%;padding:15px;
+  background:linear-gradient(135deg,#1ebe5d,#25d366);
+  color:white;border:none;border-radius:14px;
+  font-size:16px;font-weight:700;
+  font-family:'Nunito',sans-serif;
+  cursor:pointer;transition:all .3s;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-bottom:10px;
+  box-shadow:0 8px 24px rgba(37,211,102,.35);
+}
+.popup-wa-btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(37,211,102,.5)}
+.popup-call-btn{
+  width:100%;padding:12px;
+  background:var(--pale);color:var(--green);
+  border:2px solid rgba(76,175,80,.25);
+  border-radius:14px;font-size:14px;font-weight:700;
+  font-family:'Nunito',sans-serif;cursor:pointer;transition:all .3s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.popup-call-btn:hover{background:var(--green);color:white;border-color:var(--green)}
+.popup-close{
+  position:absolute;top:14px;right:14px;
+  width:36px;height:36px;
+  background:rgba(255,255,255,.2);
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-size:16px;
+  transition:all .3s;z-index:10;
+  backdrop-filter:blur(10px);
+}
+.popup-close:hover{background:rgba(255,255,255,.35);transform:rotate(90deg)}
+.popup-trust{
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  margin-top:14px;padding-top:14px;
+  border-top:1px solid rgba(76,175,80,.12);
+}
+.popup-trust-item{
+  display:flex;align-items:center;gap:5px;
+  font-size:11px;color:var(--muted);font-weight:600;
+}
+.popup-trust-item i{color:var(--leaf);font-size:12px}
+/* countdown ring */
+.popup-countdown{
+  position:absolute;top:14px;left:14px;
+  width:36px;height:36px;
+}
+.popup-countdown svg{transform:rotate(-90deg)}
+.popup-countdown circle{
+  fill:none;stroke:rgba(255,255,255,.2);stroke-width:3;
+}
+.popup-countdown .progress{
+  stroke:rgba(255,255,255,.7);stroke-width:3;
+  stroke-dasharray:100;stroke-dashoffset:0;
+  stroke-linecap:round;
+  transition:stroke-dashoffset .1s linear;
+}
+/* Mobile popup tweaks */
+@media(max-width:480px){
+  .popup-box{border-radius:20px}
+  .popup-header{padding:24px 20px 18px}
+  .popup-title{font-size:20px}
+  .popup-body{padding:20px 20px 18px}
+  .popup-row{grid-template-columns:1fr}
+  .popup-wa-btn{font-size:15px;padding:14px}
+  .popup-trust{flex-wrap:wrap;gap:10px}
 }
 </style>
 </head>
@@ -1563,6 +1795,139 @@ window.addEventListener('scroll',()=>{
     hero.querySelector('.hero-bg-mesh').style.transform=`translateY(${parallax}px)`;
   }
 });
+
+// ===== BOOKING POPUP (shows after 5 seconds) =====
+(function(){
+  const POPUP_KEY='glhc_popup_shown';
+  const popup=document.getElementById('bookingPopup');
+  const circle=document.querySelector('.popup-countdown .progress');
+  const circumference=100;
+  let cdInterval=null;
+  let elapsed=0;
+  const DELAY=5000;
+
+  function openPopup(){
+    popup.classList.add('show');
+    document.body.style.overflow='hidden';
+    sessionStorage.setItem(POPUP_KEY,'1');
+    // animate circle away once open
+    if(circle) circle.style.strokeDashoffset=circumference;
+  }
+
+  function closePopup(){
+    popup.classList.remove('show');
+    document.body.style.overflow='';
+    if(cdInterval) clearInterval(cdInterval);
+  }
+
+  function startCountdown(){
+    if(!circle) return;
+    const total=DELAY;
+    cdInterval=setInterval(()=>{
+      elapsed+=100;
+      const pct=elapsed/total;
+      circle.style.strokeDashoffset=circumference*(1-pct);
+      if(elapsed>=total) clearInterval(cdInterval);
+    },100);
+  }
+
+  // Don't show more than once per session
+  if(!sessionStorage.getItem(POPUP_KEY)){
+    startCountdown();
+    setTimeout(openPopup, DELAY);
+  }
+
+  // Close on overlay click
+  popup.addEventListener('click',function(e){if(e.target===popup) closePopup()});
+
+  // Expose globally
+  window.closeBookingPopup=closePopup;
+
+  window.submitPopupForm=function(){
+    const name=document.getElementById('popupName').value.trim();
+    const phone=document.getElementById('popupPhone').value.trim();
+    const service=document.getElementById('popupService').value;
+    const city=document.getElementById('popupCity').value.trim();
+    const msg=`Hello Green Life Healthcare,%0A%0AI would like to book an appointment.%0A%0AName: ${encodeURIComponent(name||'Not provided')}%0APhone: ${encodeURIComponent(phone||'Not provided')}%0ACity: ${encodeURIComponent(city||'Not provided')}%0AService: ${encodeURIComponent(service||'Not specified')}%0A%0APlease contact me at your earliest convenience.`;
+    window.open(`https://wa.me/916383915367?text=${msg}`,'_blank');
+    closePopup();
+  };
+
+  window.callPopup=function(){
+    window.location.href='tel:+916383915367';
+    closePopup();
+  };
+})();
 </script>
+
+<!-- BOOKING POPUP -->
+<div id="bookingPopup" role="dialog" aria-modal="true" aria-label="Book an Appointment">
+  <div class="popup-box">
+    <!-- Countdown ring top-left -->
+    <div class="popup-countdown" title="Opens in 5 seconds">
+      <svg viewBox="0 0 36 36" width="36" height="36">
+        <circle cx="18" cy="18" r="15.9"/>
+        <circle class="progress" cx="18" cy="18" r="15.9" style="stroke-dashoffset:100"/>
+      </svg>
+    </div>
+    <!-- Close btn -->
+    <button class="popup-close" onclick="closeBookingPopup()" aria-label="Close popup">
+      <i class="fas fa-times"></i>
+    </button>
+    <!-- Header -->
+    <div class="popup-header">
+      <div class="popup-icon">🏥</div>
+      <div class="popup-title">Book a Free Consultation</div>
+      <div class="popup-subtitle">Professional Home Healthcare · Tamil Nadu</div>
+      <div class="popup-badge"><i class="fas fa-bolt"></i> Quick Response Guaranteed</div>
+    </div>
+    <!-- Body / Form -->
+    <div class="popup-body">
+      <div class="popup-row">
+        <div class="popup-form-group">
+          <label>Full Name</label>
+          <input type="text" id="popupName" placeholder="Your name" autocomplete="name">
+        </div>
+        <div class="popup-form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="popupPhone" placeholder="+91 XXXXX XXXXX" autocomplete="tel">
+        </div>
+      </div>
+      <div class="popup-form-group">
+        <label>Service Required</label>
+        <select id="popupService">
+          <option value="">— Select a service —</option>
+          <option>Nursing Care at Home</option>
+          <option>Physiotherapy Services</option>
+          <option>Post Operative Care</option>
+          <option>Elderly & Geriatric Care</option>
+          <option>Pediatric & Child Care</option>
+          <option>Doctor's Visit at Home</option>
+          <option>ICU Setup at Home</option>
+          <option>24/7 Healthcare Support</option>
+        </select>
+      </div>
+      <div class="popup-form-group">
+        <label>City / District</label>
+        <input type="text" id="popupCity" placeholder="Chennai, Madurai, Salem…">
+      </div>
+      <!-- Buttons -->
+      <button class="popup-wa-btn" onclick="submitPopupForm()">
+        <i class="fab fa-whatsapp" style="font-size:20px"></i>
+        Book via WhatsApp
+      </button>
+      <button class="popup-call-btn" onclick="callPopup()">
+        <i class="fas fa-phone"></i>
+        Call Us: +91 63839 15367
+      </button>
+      <!-- Trust indicators -->
+      <div class="popup-trust">
+        <div class="popup-trust-item"><i class="fas fa-check-circle"></i> Free Consultation</div>
+        <div class="popup-trust-item"><i class="fas fa-clock"></i> 24/7 Available</div>
+        <div class="popup-trust-item"><i class="fas fa-shield-alt"></i> Certified Nurses</div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
