@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Life Home Health Care | Leading The Way To Better Health</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Nunito:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<style>
+:root {
+  --forest: #1a5c2a;
+  --green: #2e7d32;
+  --mid: #3d9142;
+  --leaf: #4caf50;
+  --lime: #7cb342;
+  --mint: #a5d6a7;
+  --pale: #e8f5e9;
+  --ultra-pale: #f1f8f2;
+  --white: #ffffff;
+  --snow: #f9fffe;
+  --text: #1a2e1c;
+  --muted: #4a6650;
+  --accent-blue: #0288d1;
+  --gold: #f9a825;
+  --shadow: rgba(30,90,40,0.13);
+  --shadow-deep: rgba(30,90,40,0.25);
+  --radius: 20px;
+  --radius-lg: 32px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Nunito',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;cursor:none}
+
+/* CUSTOM CURSOR */
+.cursor{position:fixed;width:12px;height:12px;background:var(--leaf);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:multiply}
+.cursor-follower{position:fixed;width:36px;height:36px;border:2px solid var(--leaf);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .12s ease-out;opacity:0.5}
+.cursor.hover{width:24px;height:24px;background:var(--forest)}
+.cursor-follower.hover{width:56px;height:56px;opacity:0.3}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--pale)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--green),var(--leaf));border-radius:10px}
+
+/* NAVBAR */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .4s cubic-bezier(.4,0,.2,1);background:transparent}
+#navbar.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);box-shadow:0 4px 32px var(--shadow);padding:10px 40px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--green),var(--leaf));border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px var(--shadow)}
+.nav-logo-icon svg{width:28px;height:28px;fill:white}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1.1}
+.nav-logo-text span:first-child{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--forest);letter-spacing:-.3px}
+.nav-logo-text span:last-child{font-size:10px;font-weight:600;color:var(--leaf);letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:8px;list-style:none}
+.nav-links a{font-size:14px;font-weight:600;color:var(--white);text-decoration:none;padding:8px 16px;border-radius:30px;transition:all .3s;letter-spacing:.3px}
+#navbar.scrolled .nav-links a{color:var(--text)}
+.nav-links a:hover{background:var(--pale);color:var(--green) !important}
+.nav-cta{background:linear-gradient(135deg,var(--green),var(--leaf)) !important;color:white !important;padding:10px 24px !important;border-radius:30px !important;box-shadow:0 4px 16px var(--shadow)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--shadow-deep) !important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.hamburger span{width:24px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
+#navbar.scrolled .hamburger span{background:var(--text)}
+
+/* HERO */
+#hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;background:linear-gradient(135deg,#0d3b18 0%,#1a5c2a 35%,#2e7d32 65%,#3d9142 100%)}
+.hero-bg-mesh{position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 20% 50%,rgba(76,175,80,.2) 0%,transparent 60%),radial-gradient(ellipse 60% 60% at 80% 30%,rgba(165,214,167,.15) 0%,transparent 50%),radial-gradient(ellipse 50% 50% at 60% 80%,rgba(46,125,50,.3) 0%,transparent 50%)}
+.hero-particles{position:absolute;inset:0;overflow:hidden}
+.hero-particle{position:absolute;background:rgba(255,255,255,.08);border-radius:50%;animation:float-particle linear infinite}
+@keyframes float-particle{0%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100px) rotate(720deg);opacity:0}}
+.hero-leaf{position:absolute;opacity:.07;font-size:180px;animation:slow-rotate 20s linear infinite}
+.hero-leaf:nth-child(1){top:10%;right:5%;animation-delay:-5s}
+.hero-leaf:nth-child(2){bottom:20%;right:20%;font-size:120px;animation-delay:-12s;animation-direction:reverse}
+.hero-leaf:nth-child(3){top:40%;right:35%;font-size:80px;animation-delay:-8s}
+@keyframes slow-rotate{from{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.1)}to{transform:rotate(360deg) scale(1)}}
+
+.hero-content{position:relative;z-index:10;max-width:1400px;margin:0 auto;padding:120px 40px 80px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);padding:8px 20px;border-radius:30px;color:var(--mint);font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px}
+.hero-badge i{color:var(--gold);animation:pulse-glow 2s ease-in-out infinite}
+@keyframes pulse-glow{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.2)}}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(42px,5vw,72px);font-weight:900;color:white;line-height:1.08;margin-bottom:8px;opacity:0;animation:fade-up .8s .3s forwards}
+.hero-title .green-text{color:var(--mint);display:block}
+.hero-subtitle{font-size:clamp(16px,2vw,22px);color:rgba(255,255,255,.75);margin:20px 0 12px;font-weight:400;line-height:1.6;opacity:0;animation:fade-up .8s .5s forwards}
+.hero-tagline{font-family:'Playfair Display',serif;font-size:clamp(18px,2.2vw,28px);color:var(--mint);font-style:italic;margin-bottom:32px;opacity:0;animation:fade-up .8s .7s forwards}
+.typing-container{font-size:clamp(15px,1.5vw,18px);color:rgba(255,255,255,.85);margin-bottom:36px;min-height:28px;opacity:0;animation:fade-up .8s .9s forwards}
+.typing-text{border-right:2px solid var(--mint);animation:blink .7s step-end infinite}
+@keyframes blink{50%{border-color:transparent}}
+.hero-cta-group{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fade-up .8s 1.1s forwards}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:white;color:var(--green);padding:16px 32px;border-radius:50px;font-size:16px;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.btn-primary:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.3);background:var(--pale)}
+.btn-secondary{display:inline-flex;align-items:center;gap:10px;background:transparent;color:white;padding:16px 32px;border-radius:50px;font-size:16px;font-weight:600;text-decoration:none;border:2px solid rgba(255,255,255,.5);cursor:pointer;transition:all .3s;backdrop-filter:blur(10px)}
+.btn-secondary:hover{border-color:white;background:rgba(255,255,255,.1);transform:translateY(-4px)}
+.hero-stats{display:flex;gap:32px;margin-top:40px;opacity:0;animation:fade-up .8s 1.3s forwards}
+.hero-stat{text-align:center}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:white;line-height:1}
+.hero-stat-label{font-size:12px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.hero-stat-divider{width:1px;background:rgba(255,255,255,.2);align-self:stretch}
+
+.hero-visual{position:relative;z-index:10;opacity:0;animation:fade-up .8s .4s forwards}
+.hero-image-frame{position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.4)}
+.hero-image-frame img{width:100%;height:500px;object-fit:cover;display:block;filter:brightness(.9)}
+.hero-image-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,59,24,.7) 0%,transparent 50%)}
+.hero-floating-card{position:absolute;background:white;border-radius:16px;padding:16px 20px;box-shadow:0 16px 40px rgba(0,0,0,.25);display:flex;align-items:center;gap:12px}
+.hero-float-1{bottom:-20px;left:-20px;animation:float-card 3s ease-in-out infinite}
+.hero-float-2{top:20px;right:-20px;animation:float-card 3.5s ease-in-out infinite reverse}
+@keyframes float-card{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-float-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.float-green{background:var(--pale)}
+.float-blue{background:#e3f2fd}
+.hero-float-text{font-size:13px;font-weight:700;color:var(--text);line-height:1.3}
+.hero-float-sub{font-size:11px;color:var(--muted);font-weight:400}
+.scroll-indicator{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:12px;letter-spacing:2px;text-transform:uppercase;animation:bounce-scroll 2s ease-in-out infinite}
+@keyframes bounce-scroll{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.scroll-line{width:1px;height:40px;background:linear-gradient(rgba(255,255,255,.5),transparent)}
+
+@keyframes fade-up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* TICKER / MARQUEE */
+.ticker-section{background:linear-gradient(90deg,var(--forest),var(--green),var(--forest));padding:14px 0;overflow:hidden}
+.ticker-track{display:flex;gap:60px;animation:ticker-scroll 25s linear infinite;width:max-content}
+.ticker-item{display:flex;align-items:center;gap:10px;color:white;font-size:14px;font-weight:600;white-space:nowrap}
+.ticker-dot{width:6px;height:6px;background:var(--mint);border-radius:50%}
+@keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTION COMMONS */
+.section{padding:100px 40px;max-width:1400px;margin:0 auto}
+.section-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--leaf);background:var(--pale);padding:6px 18px;border-radius:30px;margin-bottom:16px}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);font-weight:700;color:var(--forest);line-height:1.15;margin-bottom:16px}
+.section-title span{color:var(--leaf)}
+.section-desc{font-size:17px;color:var(--muted);line-height:1.8;max-width:580px}
+.section-header-center{text-align:center}
+.section-header-center .section-desc{margin:0 auto}
+
+/* ABOUT */
+#about{background:linear-gradient(135deg,var(--ultra-pale) 0%,var(--white) 60%)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-image-collage{position:relative;height:550px}
+.about-img-main{position:absolute;top:0;left:0;width:72%;height:75%;border-radius:var(--radius-lg);object-fit:cover;box-shadow:0 24px 60px var(--shadow-deep)}
+.about-img-secondary{position:absolute;bottom:0;right:0;width:55%;height:55%;border-radius:var(--radius-lg);object-fit:cover;box-shadow:0 16px 40px var(--shadow-deep);border:6px solid white}
+.about-badge-float{position:absolute;top:45%;right:-20px;background:linear-gradient(135deg,var(--green),var(--leaf));color:white;border-radius:18px;padding:18px 22px;text-align:center;box-shadow:0 16px 40px var(--shadow-deep)}
+.about-badge-float .num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;line-height:1}
+.about-badge-float .lbl{font-size:11px;letter-spacing:1px;text-transform:uppercase;opacity:.85;margin-top:4px}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.about-feature{display:flex;align-items:flex-start;gap:12px;padding:16px;background:var(--pale);border-radius:14px;transition:all .3s}
+.about-feature:hover{background:var(--mint);transform:translateY(-3px);box-shadow:0 8px 20px var(--shadow)}
+.about-feature-icon{width:40px;height:40px;min-width:40px;background:white;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 12px var(--shadow)}
+.about-feature-text{font-size:14px;font-weight:600;color:var(--text);line-height:1.4}
+
+/* STATS BAR */
+.stats-section{background:linear-gradient(135deg,var(--forest) 0%,var(--green) 100%);padding:70px 40px}
+.stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.stat-card{text-align:center;padding:40px 20px;position:relative}
+.stat-card:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:rgba(255,255,255,.2)}
+.stat-num{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:white;line-height:1;display:flex;align-items:baseline;justify-content:center;gap:4px}
+.stat-num .plus{font-size:32px}
+.stat-label{font-size:14px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1.5px;margin-top:8px;font-weight:500}
+.stat-icon{font-size:24px;color:var(--mint);margin-bottom:12px;opacity:.8}
+
+/* SERVICES */
+#services{background:var(--white);padding:100px 0}
+.services-wrapper{max-width:1400px;margin:0 auto;padding:0 40px}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px;margin-top:56px}
+.service-card{background:white;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 8px 32px var(--shadow);transition:all .4s cubic-bezier(.4,0,.2,1);cursor:pointer;position:relative;border:1px solid rgba(76,175,80,.08)}
+.service-card:hover{transform:translateY(-12px);box-shadow:0 24px 60px var(--shadow-deep)}
+.service-card-img{width:100%;height:200px;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.service-card:hover .service-card-img{transform:scale(1.08)}
+.service-card-body{padding:28px}
+.service-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;background:var(--pale)}
+.service-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--forest);margin-bottom:10px}
+.service-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.service-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.service-tag{font-size:11px;background:var(--pale);color:var(--green);padding:4px 12px;border-radius:20px;font-weight:600}
+.service-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--green),var(--leaf));color:white;padding:12px 22px;border-radius:30px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .3s;text-decoration:none;width:100%;justify-content:center}
+.service-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px var(--shadow-deep)}
+.service-card-ribbon{position:absolute;top:16px;right:16px;background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:.5px}
+
+/* SERVICE MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.active{opacity:1;pointer-events:all}
+.modal-box{background:white;border-radius:var(--radius-lg);width:100%;max-width:900px;max-height:90vh;overflow-y:auto;position:relative;transform:scale(.9) translateY(30px);transition:all .4s cubic-bezier(.4,0,.2,1)}
+.modal-overlay.active .modal-box{transform:scale(1) translateY(0)}
+.modal-hero{width:100%;height:300px;object-fit:cover;display:block;border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+.modal-content{padding:36px}
+.modal-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--forest);margin-bottom:8px}
+.modal-subtitle{font-size:15px;color:var(--leaf);font-weight:600;margin-bottom:20px}
+.modal-body{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:24px}
+.modal-process{margin-top:24px}
+.modal-process-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:16px}
+.modal-steps{display:grid;gap:16px}
+.modal-step{display:flex;gap:16px;align-items:flex-start;padding:16px;background:var(--pale);border-radius:14px}
+.modal-step-num{min-width:36px;height:36px;background:linear-gradient(135deg,var(--green),var(--leaf));color:white;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+.modal-step-text .step-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+.modal-step-text .step-desc{font-size:13px;color:var(--muted);line-height:1.6}
+.modal-cta{display:flex;gap:16px;margin-top:28px;flex-wrap:wrap}
+.modal-wa-btn{display:inline-flex;align-items:center;gap:10px;background:#25d366;color:white;padding:14px 28px;border-radius:30px;font-size:15px;font-weight:700;text-decoration:none;transition:all .3s}
+.modal-wa-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(37,211,102,.4)}
+.modal-call-btn{display:inline-flex;align-items:center;gap:10px;background:var(--pale);color:var(--green);padding:14px 28px;border-radius:30px;font-size:15px;font-weight:700;text-decoration:none;border:2px solid var(--leaf);transition:all .3s}
+.modal-call-btn:hover{background:var(--green);color:white;border-color:var(--green)}
+.modal-close{position:absolute;top:20px;right:20px;width:40px;height:40px;background:white;border:none;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:all .3s;z-index:10}
+.modal-close:hover{background:var(--forest);color:white;transform:rotate(90deg)}
+
+/* WHY CHOOSE US */
+#why{background:linear-gradient(135deg,var(--pale) 0%,var(--ultra-pale) 100%)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.why-features{display:grid;gap:20px}
+.why-feature{display:flex;gap:20px;align-items:flex-start;padding:24px;background:white;border-radius:18px;box-shadow:0 4px 20px var(--shadow);transition:all .4s}
+.why-feature:hover{transform:translateX(8px);box-shadow:0 8px 32px var(--shadow-deep)}
+.why-feature-icon{width:56px;height:56px;min-width:56px;border-radius:16px;background:linear-gradient(135deg,var(--green),var(--leaf));display:flex;align-items:center;justify-content:center;font-size:22px;color:white;box-shadow:0 8px 20px var(--shadow-deep)}
+.why-feature-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px}
+.why-feature-desc{font-size:14px;color:var(--muted);line-height:1.65}
+.why-image-side{position:relative}
+.why-main-img{width:100%;border-radius:var(--radius-lg);object-fit:cover;height:580px;box-shadow:0 32px 80px var(--shadow-deep)}
+.why-badge-float{position:absolute;bottom:30px;left:-30px;background:var(--forest);color:white;border-radius:18px;padding:20px 24px;box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.why-badge-float .num{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;line-height:1;color:var(--mint)}
+.why-badge-float .lbl{font-size:12px;letter-spacing:1px;text-transform:uppercase;opacity:.8}
+
+/* PROCESS */
+#process{background:white}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:60px;position:relative}
+.process-grid::before{content:'';position:absolute;top:60px;left:calc(12.5%);right:calc(12.5%);height:3px;background:linear-gradient(90deg,var(--green),var(--leaf),var(--lime));z-index:0;border-radius:2px}
+.process-step{text-align:center;padding:20px;position:relative;z-index:1}
+.process-num{width:60px;height:60px;background:linear-gradient(135deg,var(--green),var(--leaf));border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:20px;font-weight:700;margin:0 auto 20px;box-shadow:0 8px 24px var(--shadow-deep);font-family:'Playfair Display',serif;border:4px solid white;position:relative;transition:all .3s}
+.process-step:hover .process-num{transform:scale(1.15);box-shadow:0 16px 40px var(--shadow-deep)}
+.process-icon{font-size:22px;margin-bottom:12px;color:var(--leaf)}
+.process-title{font-size:16px;font-weight:700;color:var(--forest);margin-bottom:8px}
+.process-desc{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* DOCTOR */
+#doctors{background:linear-gradient(135deg,var(--ultra-pale),var(--white))}
+.doctors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:56px}
+.doctor-card{background:white;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 8px 32px var(--shadow);transition:all .4s;text-align:center}
+.doctor-card:hover{transform:translateY(-12px);box-shadow:0 24px 60px var(--shadow-deep)}
+.doctor-img-wrap{position:relative;overflow:hidden;height:280px;background:linear-gradient(135deg,var(--pale),var(--mint))}
+.doctor-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s}
+.doctor-card:hover .doctor-img-wrap img{transform:scale(1.05)}
+.doctor-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--forest) 0%,transparent 50%);opacity:0;transition:opacity .3s}
+.doctor-card:hover .doctor-overlay{opacity:1}
+.doctor-social{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:10px;opacity:0;transition:all .3s;transform:translateX(-50%) translateY(20px)}
+.doctor-card:hover .doctor-social{opacity:1;transform:translateX(-50%) translateY(0)}
+.doctor-social a{width:36px;height:36px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--green);transition:all .2s}
+.doctor-social a:hover{background:var(--green);color:white}
+.doctor-body{padding:24px}
+.doctor-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--forest);margin-bottom:6px}
+.doctor-role{font-size:13px;color:var(--leaf);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
+.doctor-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:16px}
+.doctor-badge{display:inline-flex;align-items:center;gap:6px;background:var(--pale);color:var(--green);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600}
+
+/* TESTIMONIALS */
+#testimonials{background:linear-gradient(135deg,var(--forest) 0%,var(--green) 100%);overflow:hidden}
+#testimonials .section-title,#testimonials .section-tag{color:white}
+#testimonials .section-tag{background:rgba(255,255,255,.15);color:white}
+.testimonials-slider{position:relative;overflow:hidden;margin-top:48px}
+.testimonials-track{display:flex;gap:28px;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.testimonial-card{min-width:380px;background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius-lg);padding:32px;flex-shrink:0}
+.testimonial-rating{display:flex;gap:4px;margin-bottom:16px}
+.testimonial-rating i{color:var(--gold);font-size:16px}
+.testimonial-text{font-size:15px;color:rgba(255,255,255,.9);line-height:1.85;margin-bottom:24px;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:14px}
+.testimonial-avatar{width:50px;height:50px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.3)}
+.testimonial-name{font-size:15px;font-weight:700;color:white}
+.testimonial-loc{font-size:12px;color:rgba(255,255,255,.6)}
+.testimonial-controls{display:flex;justify-content:center;gap:12px;margin-top:36px}
+.t-ctrl{width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,255,255,.3);background:transparent;color:white;cursor:pointer;transition:all .3s;font-size:16px}
+.t-ctrl:hover{background:white;color:var(--green);border-color:white}
+.testimonial-dots{display:flex;gap:8px;align-items:center;margin-top:20px;justify-content:center}
+.t-dot{width:8px;height:8px;background:rgba(255,255,255,.3);border-radius:50%;cursor:pointer;transition:all .3s}
+.t-dot.active{width:24px;border-radius:4px;background:white}
+
+/* CONTACT */
+#contact{background:var(--white)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.contact-info{background:linear-gradient(135deg,var(--forest),var(--green));border-radius:var(--radius-lg);padding:48px;color:white}
+.contact-info-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:white;margin-bottom:28px}
+.contact-item{display:flex;gap:16px;align-items:flex-start;margin-bottom:24px}
+.contact-icon{width:48px;height:48px;min-width:48px;background:rgba(255,255,255,.15);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.contact-item-label{font-size:12px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.contact-item-val{font-size:15px;font-weight:600;color:white}
+.contact-actions{display:flex;gap:12px;flex-direction:column;margin-top:32px}
+.c-action-btn{display:flex;align-items:center;gap:12px;padding:14px 20px;border-radius:14px;font-size:14px;font-weight:700;text-decoration:none;transition:all .3s}
+.c-wa{background:#25d366;color:white}
+.c-call{background:rgba(255,255,255,.15);color:white;border:1px solid rgba(255,255,255,.25)}
+.c-action-btn:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.contact-form{padding:48px;background:var(--ultra-pale);border-radius:var(--radius-lg)}
+.form-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--forest);margin-bottom:28px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-group{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.form-group label{font-size:13px;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:.5px}
+.form-group input,.form-group select,.form-group textarea{padding:14px 18px;border:2px solid rgba(76,175,80,.2);border-radius:12px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--text);background:white;transition:all .3s;outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--leaf);box-shadow:0 0 0 4px rgba(76,175,80,.1)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-submit{width:100%;padding:16px;background:linear-gradient(135deg,var(--green),var(--leaf));color:white;border:none;border-radius:14px;font-size:16px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .3s}
+.form-submit:hover{transform:translateY(-3px);box-shadow:0 12px 28px var(--shadow-deep)}
+.map-section{margin-top:60px}
+.map-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--forest);margin-bottom:20px;text-align:center}
+.map-frame{border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 16px 48px var(--shadow);height:420px}
+.map-frame iframe{width:100%;height:100%;border:none;display:block}
+
+/* FOOTER */
+footer{background:linear-gradient(135deg,#071a0b 0%,#0d3b18 60%,#1a5c2a 100%);color:white;padding:80px 40px 32px}
+.footer-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px}
+.footer-logo{margin-bottom:20px}
+.footer-brand{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;margin-bottom:4px}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:20px}
+.footer-desc{font-size:14px;color:rgba(255,255,255,.6);line-height:1.8}
+.footer-col-title{font-size:14px;font-weight:700;color:white;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:14px;color:rgba(255,255,255,.6);text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:8px}
+.footer-links a:hover{color:var(--mint);padding-left:6px}
+.footer-social{display:flex;gap:12px;margin-top:20px}
+.footer-social a{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:16px;transition:all .3s}
+.footer-social a:hover{background:var(--leaf);color:white;border-color:var(--leaf);transform:translateY(-3px)}
+.footer-bottom{max-width:1400px;margin:0 auto;padding-top:32px;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:gap}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.4)}
+.footer-cert{display:flex;gap:16px}
+.footer-cert span{font-size:11px;color:rgba(255,255,255,.3);background:rgba(255,255,255,.06);padding:4px 10px;border-radius:6px}
+
+/* FLOATING BUTTONS */
+.float-whatsapp{position:fixed;bottom:32px;right:32px;z-index:999;background:#25d366;width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:white;text-decoration:none;box-shadow:0 8px 32px rgba(37,211,102,.5);animation:wa-pulse 2s ease-in-out infinite}
+.float-whatsapp:hover{transform:scale(1.1);background:#1ebe5d}
+@keyframes wa-pulse{0%,100%{box-shadow:0 8px 32px rgba(37,211,102,.5)}50%{box-shadow:0 8px 48px rgba(37,211,102,.8),0 0 0 16px rgba(37,211,102,.1)}}
+.float-call{position:fixed;bottom:108px;right:32px;z-index:999;background:linear-gradient(135deg,var(--green),var(--leaf));width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;color:white;text-decoration:none;box-shadow:0 8px 24px var(--shadow-deep);animation:ring 3s ease-in-out infinite}
+@keyframes ring{0%,100%{transform:rotate(0)}10%{transform:rotate(-15deg)}20%{transform:rotate(15deg)}30%{transform:rotate(-10deg)}40%{transform:rotate(10deg)}50%{transform:rotate(0)}}
+
+/* SCROLL TO TOP */
+.scroll-top{position:fixed;bottom:32px;left:32px;z-index:999;background:var(--pale);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--green);border:none;cursor:pointer;box-shadow:0 4px 16px var(--shadow);opacity:0;transform:translateY(20px);transition:all .3s;font-size:16px}
+.scroll-top.visible{opacity:1;transform:translateY(0)}
+.scroll-top:hover{background:var(--green);color:white}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--forest);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:all .6s cubic-bezier(.4,0,.2,1)}
+#loader.gone{opacity:0;pointer-events:none}
+.loader-leaf{font-size:56px;animation:loader-spin 1.5s ease-in-out infinite}
+@keyframes loader-spin{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.2) rotate(180deg)}}
+.loader-text{font-family:'Playfair Display',serif;color:white;font-size:22px;font-weight:600;letter-spacing:2px}
+.loader-bar{width:200px;height:3px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden}
+.loader-bar-fill{height:100%;background:linear-gradient(90deg,var(--leaf),var(--mint));border-radius:2px;animation:bar-fill 2s ease forwards}
+@keyframes bar-fill{from{width:0}to{width:100%}}
+
+/* GOOGLE REVIEWS */
+.google-reviews{background:var(--pale);padding:60px 40px}
+.google-reviews-inner{max-width:1400px;margin:0 auto;text-align:center}
+.google-badge{display:inline-flex;align-items:center;gap:16px;background:white;padding:16px 28px;border-radius:20px;box-shadow:0 8px 24px var(--shadow);margin-bottom:40px}
+.google-logo{width:80px}
+.google-rating{text-align:left}
+.google-rating .num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--text)}
+.google-rating .stars{display:flex;gap:4px;color:var(--gold);font-size:18px}
+.google-rating .count{font-size:13px;color:var(--muted)}
+.google-reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;text-align:left}
+.google-review-card{background:white;border-radius:18px;padding:24px;box-shadow:0 4px 16px var(--shadow);transition:all .3s}
+.google-review-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px var(--shadow-deep)}
+.gr-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.gr-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--leaf));display:flex;align-items:center;justify-content:center;color:white;font-size:16px;font-weight:700}
+.gr-name{font-size:14px;font-weight:700;color:var(--text)}
+.gr-date{font-size:12px;color:var(--muted)}
+.gr-stars{display:flex;gap:3px;color:var(--gold);font-size:13px;margin-bottom:8px}
+.gr-text{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* AMENITIES / BENEFITS */
+.benefits-section{background:white;padding:80px 40px}
+.benefits-inner{max-width:1400px;margin:0 auto}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.benefit-card{background:linear-gradient(135deg,var(--pale),var(--white));border-radius:20px;padding:32px;border:1px solid rgba(76,175,80,.12);transition:all .3s;text-align:center}
+.benefit-card:hover{transform:translateY(-8px);box-shadow:0 20px 48px var(--shadow);border-color:var(--leaf)}
+.benefit-icon{font-size:40px;margin-bottom:16px;display:block}
+.benefit-title{font-size:17px;font-weight:700;color:var(--forest);margin-bottom:8px}
+.benefit-desc{font-size:14px;color:var(--muted);line-height:1.7}
+
+/* MOBILE NAV MENU */
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(13,59,24,.97);z-index:1500;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:28px;color:white;text-decoration:none;font-weight:600;transition:all .2s}
+.mobile-menu a:hover{color:var(--mint)}
+.mobile-close{position:absolute;top:24px;right:24px;background:none;border:none;color:white;font-size:28px;cursor:pointer}
+
+/* ANIMATIONS */
+[data-aos]{transition-property:transform,opacity}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .hero-content{grid-template-columns:1fr;text-align:center}
+  .hero-visual{display:none}
+  .hero-cta-group{justify-content:center}
+  .hero-stats{justify-content:center}
+  .about-grid,.why-grid,.contact-grid{grid-template-columns:1fr}
+  .about-image-collage{height:380px}
+  .doctors-grid{grid-template-columns:1fr 1fr}
+  .process-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .process-grid::before{display:none}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .google-reviews-grid{grid-template-columns:1fr 1fr}
+  .benefits-grid{grid-template-columns:1fr 1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  #navbar{padding:12px 20px}
+  .section{padding:70px 20px}
+  .doctors-grid{grid-template-columns:1fr}
+  .google-reviews-grid{grid-template-columns:1fr}
+  .benefits-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .process-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .hero-content{padding:100px 20px 60px}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-leaf">🌿</div>
+  <div class="loader-text">GREEN LIFE HEALTHCARE</div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- FLOATING BUTTONS -->
+<a href="https://wa.me/916383915367?text=Hello%20Green%20Life%20Healthcare%2C%20I%20would%20like%20to%20book%20an%20appointment." class="float-whatsapp" target="_blank" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+<a href="tel:+916383915367" class="float-call" title="Call Us">
+  <i class="fas fa-phone"></i>
+</a>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 4 C20 4 8 10 8 22 C8 29 13 35 20 36 C27 35 32 29 32 22 C32 10 20 4 20 4Z" opacity=".9"/>
+        <path d="M20 18 L20 30 M14 22 L20 18 L26 22" stroke="#b6f0b6" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="nav-logo-text">
+      <span>Green Life</span>
+      <span>Home Health Care</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#doctors">Our Team</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://wa.me/916383915367?text=I'd%20like%20to%20book%20an%20appointment" class="nav-cta" target="_blank">Book Appointment</a></li>
+  </ul>
+  <div class="hamburger" id="hamburgerBtn">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#services" onclick="closeMobileMenu()">Services</a>
+  <a href="#doctors" onclick="closeMobileMenu()">Our Team</a>
+  <a href="#testimonials" onclick="closeMobileMenu()">Reviews</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+  <a href="https://wa.me/916383915367?text=I'd%20like%20to%20book%20an%20appointment" target="_blank" style="background:var(--leaf);padding:14px 32px;border-radius:30px;margin-top:16px">Book Appointment</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-mesh"></div>
+  <div class="hero-particles" id="heroParticles"></div>
+  <div class="hero-leaf" style="top:5%;right:3%">🍃</div>
+  <div class="hero-leaf" style="bottom:15%;right:18%;font-size:100px">🌿</div>
+  <div class="hero-leaf" style="top:50%;right:32%;font-size:70px">🍀</div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <i class="fas fa-shield-alt"></i>
+        <span>Trusted Healthcare Partner · Tamil Nadu</span>
+      </div>
+      <h1 class="hero-title">
+        Green Life
+        <span class="green-text">Home Health Care</span>
+      </h1>
+      <p class="hero-tagline">Leading The Way To Better Health</p>
+      <p class="hero-subtitle">24/7 Home Healthcare Services Across Tamil Nadu — Professional, compassionate, and hygienic patient care at home.</p>
+      <div class="typing-container">
+        ✦ We provide: <span class="typing-text" id="typingText"></span>
+      </div>
+      <div class="hero-cta-group">
+        <a href="https://wa.me/916383915367?text=Hello%20Green%20Life%2C%20I'd%20like%20to%20book%20an%20appointment." class="btn-primary" target="_blank">
+          <i class="fab fa-whatsapp"></i> Book Appointment Now
+        </a>
+        <a href="tel:+916383915367" class="btn-secondary">
+          <i class="fas fa-phone"></i> Call Us Anytime
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span class="counter" data-target="500">0</span><span class="plus">+</span></div>
+          <div class="hero-stat-label">Patients Served</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span class="counter" data-target="15">0</span><span class="plus">+</span></div>
+          <div class="hero-stat-label">Expert Nurses</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span class="counter" data-target="24">0</span><span class="plus">/7</span></div>
+          <div class="hero-stat-label">Support Hours</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-image-frame">
+        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=700&q=85&auto=format&fit=crop" alt="Professional Home Nursing Care">
+        <div class="hero-image-overlay"></div>
+        <div class="hero-floating-card hero-float-1">
+          <div class="hero-float-icon float-green"><i class="fas fa-heart" style="color:var(--green)"></i></div>
+          <div>
+            <div class="hero-float-text">24/7 Available</div>
+            <div class="hero-float-sub">Round the clock support</div>
+          </div>
+        </div>
+        <div class="hero-floating-card hero-float-2">
+          <div class="hero-float-icon float-blue"><i class="fas fa-certificate" style="color:var(--accent-blue)"></i></div>
+          <div>
+            <div class="hero-float-text">Certified Nurses</div>
+            <div class="hero-float-sub">B.Sc Nursing Qualified</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-section">
+  <div class="ticker-track" id="ticker">
+    <div class="ticker-item"><div class="ticker-dot"></div><span>Nursing Care at Home</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>Physiotherapy Services</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>Post Operative Care</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>Elderly & Geriatric Care</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>Pediatric Care</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>Doctor's Visit at Home</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>ICU Setup at Home</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>24/7 Healthcare Support</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>All Over Tamil Nadu</span></div>
+    <!-- Duplicate for infinite scroll -->
+    <div class="ticker-item"><div class="ticker-dot"></div><span>Nursing Care at Home</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>Physiotherapy Services</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>Post Operative Care</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>Elderly & Geriatric Care</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>Pediatric Care</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>Doctor's Visit at Home</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>ICU Setup at Home</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>24/7 Healthcare Support</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span>All Over Tamil Nadu</span></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section">
+    <div class="about-grid">
+      <div class="about-image-collage" data-aos="fade-right">
+        <img class="about-img-main" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=85&auto=format&fit=crop" alt="Professional Home Healthcare Team">
+        <img class="about-img-secondary" src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=600&q=85&auto=format&fit=crop" alt="Caring for patients at home">
+        <div class="about-badge-float">
+          <div class="num">100%</div>
+          <div class="lbl">Hygienic Care</div>
+        </div>
+      </div>
+      <div data-aos="fade-left">
+        <span class="section-tag">About Us</span>
+        <h2 class="section-title">Tamil Nadu's Trusted<br><span>Home Health Care</span> Agency</h2>
+        <p class="section-desc" style="margin-bottom:24px">Green Life Home Health Care is a professional nursing services agency headquartered in Chennai, providing compassionate, evidence-based healthcare at home. Led by our founder <strong>Mr. K. Sridhar B.Sc.(N), MBA</strong>, we bring clinical expertise to your doorstep with dignity and care.</p>
+        <p class="section-desc">We are available <strong>24/7 across all of Tamil Nadu</strong> — ensuring your loved ones receive the highest standard of care without leaving the comfort of home.</p>
+        <div class="about-features">
+          <div class="about-feature" data-aos="zoom-in" data-aos-delay="100">
+            <div class="about-feature-icon">🏥</div>
+            <div class="about-feature-text">Licensed Medical Professionals</div>
+          </div>
+          <div class="about-feature" data-aos="zoom-in" data-aos-delay="200">
+            <div class="about-feature-icon">🌿</div>
+            <div class="about-feature-text">Hygienic & Clean Environment</div>
+          </div>
+          <div class="about-feature" data-aos="zoom-in" data-aos-delay="300">
+            <div class="about-feature-icon">⏰</div>
+            <div class="about-feature-text">24/7 Round-the-Clock Support</div>
+          </div>
+          <div class="about-feature" data-aos="zoom-in" data-aos-delay="400">
+            <div class="about-feature-icon">🗺️</div>
+            <div class="about-feature-text">Pan Tamil Nadu Service</div>
+          </div>
+        </div>
+        <div style="margin-top:32px">
+          <a href="https://wa.me/916383915367?text=I%20want%20to%20know%20more%20about%20your%20services" class="btn-primary" style="display:inline-flex;background:linear-gradient(135deg,var(--green),var(--leaf));color:white" target="_blank">
+            <i class="fab fa-whatsapp"></i> Enquire Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card" data-aos="fade-up">
+      <div class="stat-icon"><i class="fas fa-user-nurse"></i></div>
+      <div class="stat-num"><span class="counter" data-target="500">0</span><span class="plus">+</span></div>
+      <div class="stat-label">Patients Cared</div>
+    </div>
+    <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="stat-icon"><i class="fas fa-stethoscope"></i></div>
+      <div class="stat-num"><span class="counter" data-target="15">0</span><span class="plus">+</span></div>
+      <div class="stat-label">Expert Nurses</div>
+    </div>
+    <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div>
+      <div class="stat-num"><span class="counter" data-target="38">0</span><span class="plus">+</span></div>
+      <div class="stat-label">Districts Covered</div>
+    </div>
+    <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="stat-icon"><i class="fas fa-award"></i></div>
+      <div class="stat-num"><span class="counter" data-target="100">0</span><span class="plus">%</span></div>
+      <div class="stat-label">Patient Satisfaction</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" style="background:var(--ultra-pale);padding:100px 0">
+  <div class="services-wrapper">
+    <div class="section-header-center" data-aos="fade-up">
+      <span class="section-tag">What We Offer</span>
+      <h2 class="section-title">Our <span>Healthcare</span> Services</h2>
+      <p class="section-desc" style="margin:0 auto;text-align:center">Comprehensive home healthcare delivered by our team of certified nurses, physiotherapists, and medical professionals across Tamil Nadu.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="0" onclick="openModal('nursing')">
+        <div class="service-card-ribbon">24/7</div>
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80&auto=format&fit=crop" alt="Nursing Care">
+        <div class="service-card-body">
+          <div class="service-icon" style="background:#e8f5e9">🏥</div>
+          <div class="service-title">Nursing Care at Home</div>
+          <div class="service-desc">Professional nursing care by qualified B.Sc nurses. Wound dressing, IV therapy, medication management, and continuous health monitoring.</div>
+          <div class="service-tags"><span class="service-tag">Wound Care</span><span class="service-tag">IV Therapy</span><span class="service-tag">Monitoring</span></div>
+          <button class="service-btn"><i class="fas fa-info-circle"></i> Know More & Book</button>
+        </div>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="80" onclick="openModal('physio')">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80&auto=format&fit=crop" alt="Physiotherapy">
+        <div class="service-card-body">
+          <div class="service-icon" style="background:#e3f2fd">🦾</div>
+          <div class="service-title">Physiotherapy at Home</div>
+          <div class="service-desc">Certified physiotherapists provide rehabilitation, pain management, stroke recovery, and mobility improvement in the comfort of your home.</div>
+          <div class="service-tags"><span class="service-tag">Rehabilitation</span><span class="service-tag">Pain Relief</span><span class="service-tag">Mobility</span></div>
+          <button class="service-btn"><i class="fas fa-info-circle"></i> Know More & Book</button>
+        </div>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="160" onclick="openModal('postop')">
+        <div class="service-card-ribbon">Specialist</div>
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=600&q=80&auto=format&fit=crop" alt="Post Operative Care">
+        <div class="service-card-body">
+          <div class="service-icon" style="background:#fce4ec">❤️‍🩹</div>
+          <div class="service-title">Post Operative Care</div>
+          <div class="service-desc">Expert post-surgery recovery care at home — dressing changes, drain management, pain monitoring, and ensuring smooth recuperation.</div>
+          <div class="service-tags"><span class="service-tag">Post-Surgery</span><span class="service-tag">Recovery</span><span class="service-tag">Monitoring</span></div>
+          <button class="service-btn"><i class="fas fa-info-circle"></i> Know More & Book</button>
+        </div>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="0" onclick="openModal('elderly')">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80&auto=format&fit=crop" alt="Elderly Care">
+        <div class="service-card-body">
+          <div class="service-icon" style="background:#fff3e0">👴</div>
+          <div class="service-title">Geriatric & Elderly Care</div>
+          <div class="service-desc">Compassionate care for seniors — daily assistance, chronic disease management, fall prevention, and dignified companionship at home.</div>
+          <div class="service-tags"><span class="service-tag">Senior Care</span><span class="service-tag">Companion</span><span class="service-tag">Daily Assist</span></div>
+          <button class="service-btn"><i class="fas fa-info-circle"></i> Know More & Book</button>
+        </div>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="80" onclick="openModal('pediatric')">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80&auto=format&fit=crop" alt="Pediatric Care">
+        <div class="service-card-body">
+          <div class="service-icon" style="background:#e8f5e9">👶</div>
+          <div class="service-title">Pediatric Care</div>
+          <div class="service-desc">Gentle, specialized nursing care for infants and children — vaccinations, health monitoring, newborn care, and illness management at home.</div>
+          <div class="service-tags"><span class="service-tag">Newborn</span><span class="service-tag">Child Health</span><span class="service-tag">Vaccination</span></div>
+          <button class="service-btn"><i class="fas fa-info-circle"></i> Know More & Book</button>
+        </div>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="160" onclick="openModal('doctor')">
+        <div class="service-card-ribbon">New</div>
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80&auto=format&fit=crop" alt="Doctor Visit">
+        <div class="service-card-body">
+          <div class="service-icon" style="background:#e3f2fd">👨‍⚕️</div>
+          <div class="service-title">Doctor's Visit at Home</div>
+          <div class="service-desc">Experienced licensed doctors for check-ups, acute care, chronic illness management, palliative care, and primary healthcare — at your doorstep.</div>
+          <div class="service-tags"><span class="service-tag">Consultation</span><span class="service-tag">Acute Care</span><span class="service-tag">Primary Care</span></div>
+          <button class="service-btn"><i class="fas fa-info-circle"></i> Know More & Book</button>
+        </div>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="0" onclick="openModal('icu')">
+        <div class="service-card-ribbon">ICU</div>
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1504439468489-c8920d796a29?w=600&q=80&auto=format&fit=crop" alt="ICU Setup">
+        <div class="service-card-body">
+          <div class="service-icon" style="background:#fce4ec">🫀</div>
+          <div class="service-title">ICU Setup at Home</div>
+          <div class="service-desc">Complete ICU-grade equipment and specialised critical care nursing setup at home for patients requiring intensive monitoring and support.</div>
+          <div class="service-tags"><span class="service-tag">Critical Care</span><span class="service-tag">Ventilator</span><span class="service-tag">Monitoring</span></div>
+          <button class="service-btn"><i class="fas fa-info-circle"></i> Enquire Now</button>
+        </div>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="80" onclick="openModal('mother')">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=600&q=80&auto=format&fit=crop" alt="Mother Child Care">
+        <div class="service-card-body">
+          <div class="service-icon" style="background:#fce4ec">🤱</div>
+          <div class="service-title">Mother & Child Care</div>
+          <div class="service-desc">Post-natal care, breastfeeding support, newborn monitoring, and maternal recovery care — expert support for new mothers and babies.</div>
+          <div class="service-tags"><span class="service-tag">Post-Natal</span><span class="service-tag">Newborn</span><span class="service-tag">Breastfeeding</span></div>
+          <button class="service-btn"><i class="fas fa-info-circle"></i> Know More & Book</button>
+        </div>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="160" onclick="openModal('palliative')">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1609743522471-83c84ce23e32?w=600&q=80&auto=format&fit=crop" alt="Palliative Care">
+        <div class="service-card-body">
+          <div class="service-icon" style="background:#e8f5e9">🕊️</div>
+          <div class="service-title">Palliative Care</div>
+          <div class="service-desc">Compassionate end-of-life and serious illness care focused on comfort, dignity, pain relief, and emotional support for patients and families.</div>
+          <div class="service-tags"><span class="service-tag">Comfort Care</span><span class="service-tag">Pain Mgmt</span><span class="service-tag">Support</span></div>
+          <button class="service-btn"><i class="fas fa-info-circle"></i> Know More & Book</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Additional quick services -->
+    <div style="margin-top:48px;background:white;border-radius:var(--radius-lg);padding:40px;box-shadow:0 8px 32px var(--shadow)" data-aos="fade-up">
+      <h3 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--forest);margin-bottom:28px;text-align:center">More Services Available</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px">
+        <a href="https://wa.me/916383915367?text=I%20need%20Adult%20Vaccination%20at%20home" target="_blank" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--pale);border-radius:14px;text-decoration:none;color:var(--text);font-size:14px;font-weight:600;transition:all .3s" onmouseover="this.style.background='var(--mint)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='var(--pale)';this.style.transform='translateY(0)'">
+          <span style="font-size:22px">💉</span> Adult Vaccination
+        </a>
+        <a href="https://wa.me/916383915367?text=I%20need%20Medicine%20Delivery" target="_blank" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--pale);border-radius:14px;text-decoration:none;color:var(--text);font-size:14px;font-weight:600;transition:all .3s" onmouseover="this.style.background='var(--mint)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='var(--pale)';this.style.transform='translateY(0)'">
+          <span style="font-size:22px">💊</span> Medicine Delivery
+        </a>
+        <a href="https://wa.me/916383915367?text=I%20need%20Diagnostics%20at%20home" target="_blank" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--pale);border-radius:14px;text-decoration:none;color:var(--text);font-size:14px;font-weight:600;transition:all .3s" onmouseover="this.style.background='var(--mint)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='var(--pale)';this.style.transform='translateY(0)'">
+          <span style="font-size:22px">🔬</span> Diagnostics at Home
+        </a>
+        <a href="https://wa.me/916383915367?text=I%20need%20Trained%20Attendant" target="_blank" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--pale);border-radius:14px;text-decoration:none;color:var(--text);font-size:14px;font-weight:600;transition:all .3s" onmouseover="this.style.background='var(--mint)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='var(--pale)';this.style.transform='translateY(0)'">
+          <span style="font-size:22px">🧑‍⚕️</span> Trained Attendant
+        </a>
+        <a href="https://wa.me/916383915367?text=I%20need%20Rehab%20Package" target="_blank" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--pale);border-radius:14px;text-decoration:none;color:var(--text);font-size:14px;font-weight:600;transition:all .3s" onmouseover="this.style.background='var(--mint)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='var(--pale)';this.style.transform='translateY(0)'">
+          <span style="font-size:22px">🏃</span> Rehab Packages
+        </a>
+        <a href="https://wa.me/916383915367?text=I%20need%20Travel%20Nurse%20service" target="_blank" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--pale);border-radius:14px;text-decoration:none;color:var(--text);font-size:14px;font-weight:600;transition:all .3s" onmouseover="this.style.background='var(--mint)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='var(--pale)';this.style.transform='translateY(0)'">
+          <span style="font-size:22px">✈️</span> Travel Nurses
+        </a>
+        <a href="https://wa.me/916383915367?text=I%20need%20Senior%20Care%20Subscription" target="_blank" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--pale);border-radius:14px;text-decoration:none;color:var(--text);font-size:14px;font-weight:600;transition:all .3s" onmouseover="this.style.background='var(--mint)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='var(--pale)';this.style.transform='translateY(0)'">
+          <span style="font-size:22px">🧓</span> Senior Subscription
+        </a>
+        <a href="https://wa.me/916383915367?text=I%20need%20Nurse%20Procedures%20at%20home" target="_blank" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--pale);border-radius:14px;text-decoration:none;color:var(--text);font-size:14px;font-weight:600;transition:all .3s" onmouseover="this.style.background='var(--mint)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='var(--pale)';this.style.transform='translateY(0)'">
+          <span style="font-size:22px">🩺</span> Nurse Procedures
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="section">
+    <div class="why-grid">
+      <div data-aos="fade-right">
+        <span class="section-tag">Why Green Life</span>
+        <h2 class="section-title">Why Families Choose<br><span>Us for Care</span></h2>
+        <p class="section-desc" style="margin-bottom:36px">We go beyond standard healthcare — delivering a home environment that's safe, clean, and filled with genuine compassion.</p>
+        <div class="why-features">
+          <div class="why-feature" data-aos="fade-right" data-aos-delay="100">
+            <div class="why-feature-icon">🌿</div>
+            <div><div class="why-feature-title">Enhances Self-Sufficiency in Daily Tasks</div><div class="why-feature-desc">Our trained nurses empower patients to regain independence with guided daily routines and personalized care plans.</div></div>
+          </div>
+          <div class="why-feature" data-aos="fade-right" data-aos-delay="200">
+            <div class="why-feature-icon">❤️</div>
+            <div><div class="why-feature-title">Specialized Care for Chronic Illness</div><div class="why-feature-desc">Dedicated management for diabetes, hypertension, COPD, cardiac conditions, and more — right at home.</div></div>
+          </div>
+          <div class="why-feature" data-aos="fade-right" data-aos-delay="300">
+            <div class="why-feature-icon">🛡️</div>
+            <div><div class="why-feature-title">Reducing Risk of Injuries</div><div class="why-feature-desc">Trained professionals assess and minimize fall risks, medication errors, and complications in home settings.</div></div>
+          </div>
+          <div class="why-feature" data-aos="fade-right" data-aos-delay="400">
+            <div class="why-feature-icon">📈</div>
+            <div><div class="why-feature-title">Continuous Health Monitoring</div><div class="why-feature-desc">Regular vitals tracking, health assessments, and timely reporting to doctors keep your loved ones safe.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="why-image-side" data-aos="fade-left">
+        <img class="why-main-img" src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=700&q=85&auto=format&fit=crop" alt="Quality home healthcare">
+        <div class="why-badge-float">
+          <div class="num">5★</div>
+          <div class="lbl">Patient Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS GRID -->
+<div class="benefits-section">
+  <div class="benefits-inner">
+    <div class="section-header-center" data-aos="fade-up">
+      <span class="section-tag">Our Promise</span>
+      <h2 class="section-title">How We <span>Improve</span> Your Life</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card" data-aos="zoom-in" data-aos-delay="0"><span class="benefit-icon">🏠</span><div class="benefit-title">Comfort of Home</div><div class="benefit-desc">Patients recover faster and feel more at ease in their own familiar environment with family nearby.</div></div>
+      <div class="benefit-card" data-aos="zoom-in" data-aos-delay="80"><span class="benefit-icon">🧘</span><div class="benefit-title">Improve Quality of Life</div><div class="benefit-desc">Holistic care approach addressing physical, emotional, and social wellbeing for complete wellness.</div></div>
+      <div class="benefit-card" data-aos="zoom-in" data-aos-delay="160"><span class="benefit-icon">💪</span><div class="benefit-title">Retain Independence</div><div class="benefit-desc">Carefully designed programs that restore and preserve daily functions and autonomous living.</div></div>
+      <div class="benefit-card" data-aos="zoom-in" data-aos-delay="0"><span class="benefit-icon">🤝</span><div class="benefit-title">Supportive Companion</div><div class="benefit-desc">Our nurses are more than caregivers — they are understanding companions who bring warmth and comfort.</div></div>
+      <div class="benefit-card" data-aos="zoom-in" data-aos-delay="80"><span class="benefit-icon">🧼</span><div class="benefit-title">Hygienic Environment</div><div class="benefit-desc">Strict protocols for clean, sterile, and infection-free care environments maintained by our trained team.</div></div>
+      <div class="benefit-card" data-aos="zoom-in" data-aos-delay="160"><span class="benefit-icon">💰</span><div class="benefit-title">Cost-Effective Care</div><div class="benefit-desc">Premium hospital-quality care at home — at a fraction of hospitalization costs, without compromising quality.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section">
+    <div class="section-header-center" data-aos="fade-up">
+      <span class="section-tag">How It Works</span>
+      <h2 class="section-title">Getting Started is <span>Simple</span></h2>
+      <p class="section-desc">From your first call to ongoing care — we make quality healthcare at home effortless and stress-free.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step" data-aos="fade-up" data-aos-delay="0">
+        <div class="process-num">01</div>
+        <div class="process-icon">📞</div>
+        <div class="process-title">Contact Us</div>
+        <div class="process-desc">Call or WhatsApp us at +91 63839 15367. Our care coordinator will respond within minutes, 24/7.</div>
+      </div>
+      <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+        <div class="process-num">02</div>
+        <div class="process-icon">📋</div>
+        <div class="process-title">Assessment</div>
+        <div class="process-desc">Our nurse visits or speaks with you to understand the patient's medical needs, condition, and requirements.</div>
+      </div>
+      <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+        <div class="process-num">03</div>
+        <div class="process-icon">🩺</div>
+        <div class="process-title">Care Planning</div>
+        <div class="process-desc">A personalized care plan is created. We match the best-suited nurse or caregiver to your patient's profile.</div>
+      </div>
+      <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+        <div class="process-num">04</div>
+        <div class="process-icon">🌿</div>
+        <div class="process-title">Care Begins</div>
+        <div class="process-desc">Your dedicated nurse arrives, begins care, and provides regular health updates. We are with you every step.</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <a href="https://wa.me/916383915367?text=I%20would%20like%20to%20get%20started%20with%20care%20for%20my%20family%20member" class="btn-primary" style="background:linear-gradient(135deg,var(--green),var(--leaf));color:white;display:inline-flex" target="_blank">
+        <i class="fab fa-whatsapp"></i> Get Started Today
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORS -->
+<section id="doctors">
+  <div class="section">
+    <div class="section-header-center" data-aos="fade-up">
+      <span class="section-tag">Our Team</span>
+      <h2 class="section-title">Meet Our <span>Healthcare</span> Professionals</h2>
+      <p class="section-desc">Led by experienced medical professionals passionate about delivering compassionate, evidence-based home healthcare.</p>
+    </div>
+    <div class="doctors-grid">
+
+      <div class="doctor-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="doctor-img-wrap">
+          <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=500&q=85&auto=format&fit=crop&crop=top" alt="Founder">
+          <div class="doctor-overlay"></div>
+          <div class="doctor-social">
+            <a href="mailto:healthcaregreenlife3@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="tel:+916383915367"><i class="fas fa-phone"></i></a>
+          </div>
+        </div>
+        <div class="doctor-body">
+          <div class="doctor-name">Mr. K. Sridhar</div>
+          <div class="doctor-role">Founder & Director</div>
+          <div class="doctor-desc">B.Sc. (Nursing), MBA — 10+ years of clinical and management experience in home healthcare and nursing services across Tamil Nadu.</div>
+          <span class="doctor-badge"><i class="fas fa-star" style="color:var(--gold)"></i> Founder, Green Life Healthcare</span>
+        </div>
+      </div>
+
+      <div class="doctor-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="doctor-img-wrap">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&q=85&auto=format&fit=crop&crop=top" alt="Senior Nurse">
+          <div class="doctor-overlay"></div>
+          <div class="doctor-social">
+            <a href="https://wa.me/916383915367"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="doctor-body">
+          <div class="doctor-name">Ms. Priya Lakshmi</div>
+          <div class="doctor-role">Senior Home Care Nurse</div>
+          <div class="doctor-desc">B.Sc. Nursing with 7 years experience in critical care and post-operative home nursing. Specialized in geriatric and palliative care.</div>
+          <span class="doctor-badge"><i class="fas fa-certificate" style="color:var(--leaf)"></i> Certified Home Care Specialist</span>
+        </div>
+      </div>
+
+      <div class="doctor-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="doctor-img-wrap">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&q=85&auto=format&fit=crop&crop=top" alt="Physiotherapist">
+          <div class="doctor-overlay"></div>
+          <div class="doctor-social">
+            <a href="https://wa.me/916383915367"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="doctor-body">
+          <div class="doctor-name">Dr. Karthik Rajan</div>
+          <div class="doctor-role">Physiotherapist</div>
+          <div class="doctor-desc">MPT (Master of Physiotherapy) with expertise in neurological, orthopedic, and cardiac rehabilitation at home across Chennai and Tamil Nadu.</div>
+          <span class="doctor-badge"><i class="fas fa-certificate" style="color:var(--leaf)"></i> MPT Certified Physiotherapist</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" style="padding:100px 0">
+  <div style="max-width:1400px;margin:0 auto;padding:0 40px">
+    <div class="section-header-center" data-aos="fade-up">
+      <span class="section-tag">Patient Stories</span>
+      <h2 class="section-title" style="color:white">What Families <span style="color:var(--mint)">Say About Us</span></h2>
+      <p class="section-desc" style="color:rgba(255,255,255,.7)">Real experiences from families across Tamil Nadu who trusted Green Life Healthcare with their loved ones.</p>
+    </div>
+    <div class="testimonials-slider" data-aos="fade-up">
+      <div class="testimonials-track" id="testimonialsTrack">
+
+        <div class="testimonial-card">
+          <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">"After my father's hip surgery, Green Life provided exceptional post-operative care at home. The nurse was punctual, professional, and caring. My father recovered faster than expected. Highly recommend to every family in Chennai."</p>
+          <div class="testimonial-author">
+            <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--leaf),var(--mint));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px">R</div>
+            <div><div class="testimonial-name">Rajesh Krishnamurthy</div><div class="testimonial-loc">Chennai, Tamil Nadu</div></div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">"My mother is diabetic and needs daily monitoring. Green Life's nurses are like family to us now. They maintain hygiene, track her vitals, and even communicate updates to our doctor. Truly professional and compassionate service."</p>
+          <div class="testimonial-author">
+            <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--forest),var(--mid));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px">S</div>
+            <div><div class="testimonial-name">Sunitha Murugan</div><div class="testimonial-loc">Coimbatore, Tamil Nadu</div></div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">"We needed physiotherapy for my grandmother after a stroke. The therapist from Green Life was incredibly skilled and patient. Her improvement in mobility within 3 months was beyond our expectations. Superb team!"</p>
+          <div class="testimonial-author">
+            <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#e65100,#ff6d00);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px">A</div>
+            <div><div class="testimonial-name">Anand Ramamoorthy</div><div class="testimonial-loc">Madurai, Tamil Nadu</div></div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">"Best decision we made for our newborn care! Green Life's nurses are knowledgeable, gentle, and made the first weeks much easier for us. They helped with breastfeeding, newborn baths, and daily checkups. 100% recommend!"</p>
+          <div class="testimonial-author">
+            <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#6a1b9a,#9c27b0);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px">P</div>
+            <div><div class="testimonial-name">Pavithra Chandrasekaran</div><div class="testimonial-loc">Salem, Tamil Nadu</div></div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+          <p class="testimonial-text">"I contacted Green Life for my elderly uncle who has Parkinson's. Their team arrived the same day, was empathetic and thorough. They maintain his dignity while providing excellent care. Mr. Sridhar himself followed up to check on progress."</p>
+          <div class="testimonial-author">
+            <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--accent-blue),#0277bd);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px">V</div>
+            <div><div class="testimonial-name">Venkatesh Iyer</div><div class="testimonial-loc">Trichy, Tamil Nadu</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="testimonial-dots" id="testimonialDots"></div>
+    <div class="testimonial-controls">
+      <button class="t-ctrl" onclick="slideTestimonials(-1)"><i class="fas fa-chevron-left"></i></button>
+      <button class="t-ctrl" onclick="slideTestimonials(1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- GOOGLE REVIEWS -->
+<div class="google-reviews">
+  <div class="google-reviews-inner">
+    <div data-aos="zoom-in">
+      <div class="google-badge">
+        <svg class="google-logo" viewBox="0 0 272 92" xmlns="http://www.w3.org/2000/svg"><path fill="#4285f4" d="M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z"/><path fill="#d14836" d="M163.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18c0-12.85 9.99-22.18 22.25-22.18s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44s-12.51 5.46-12.51 13.44c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z"/><path fill="#f9ab00" d="M209.75 26.34v39.82c0 16.38-9.66 23.07-21.08 23.07-10.75 0-17.22-7.19-19.66-13.07l8.48-3.53c1.51 3.61 5.21 7.87 11.17 7.87 7.31 0 11.84-4.51 11.84-13v-3.19h-.34c-2.18 2.69-6.38 5.04-11.68 5.04-11.09 0-21.25-9.66-21.25-22.09 0-12.52 10.16-22.26 21.25-22.26 5.29 0 9.49 2.35 11.68 4.96h.34v-3.61h9.25zm-8.56 20.92c0-7.81-5.21-13.52-11.84-13.52-6.72 0-12.35 5.71-12.35 13.52 0 7.73 5.63 13.36 12.35 13.36 6.63 0 11.84-5.63 11.84-13.36z"/><path fill="#4285f4" d="M225 3v65h-9.5V3h9.5z"/><path fill="#34a853" d="M262.02 54.48l7.56 5.04c-2.44 3.61-8.32 9.83-18.48 9.83-12.6 0-22.01-9.74-22.01-22.18 0-13.19 9.49-22.18 20.92-22.18 11.51 0 17.14 9.16 18.98 14.11l1.01 2.52-29.65 12.28c2.27 4.45 5.8 6.72 10.75 6.72 4.96 0 8.4-2.44 10.92-6.14zm-23.27-7.98l19.82-8.23c-1.09-2.77-4.37-4.7-8.23-4.7-4.95 0-11.84 4.37-11.59 12.93z"/><path fill="#4285f4" d="M35.29 41.41V32h31.36c.31 1.64.47 3.58.47 5.68 0 7.06-1.93 15.79-8.15 22.01-6.05 6.31-13.78 9.66-24.02 9.66C16.32 69.35.36 53.89.36 35.53.36 17.17 16.32 1.71 34.95 1.71c10.5 0 17.98 4.12 23.6 9.49l-6.64 6.64c-4.03-3.78-9.49-6.72-16.97-6.72-13.86 0-24.7 11.17-24.7 25.03 0 13.86 10.84 25.03 24.7 25.03 8.99 0 14.11-3.61 17.39-6.89 2.66-2.66 4.41-6.46 5.1-11.65l-22.14.77z"/></svg>
+        <div class="google-rating">
+          <div class="num">4.9</div>
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+          <div class="count">Based on Google Reviews</div>
+        </div>
+      </div>
+    </div>
+    <div class="google-reviews-grid">
+      <div class="google-review-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="gr-header"><div class="gr-avatar">K</div><div><div class="gr-name">Kavitha Selvaraj</div><div class="gr-date">2 weeks ago</div></div></div>
+        <div class="gr-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="gr-text">Excellent service! The nurse assigned for my mother-in-law was very professional and caring. Clean hygiene maintained throughout. Highly satisfied with Green Life Healthcare.</div>
+      </div>
+      <div class="google-review-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="gr-header"><div class="gr-avatar" style="background:linear-gradient(135deg,#1565c0,#1976d2)">M</div><div><div class="gr-name">Muruganantham T</div><div class="gr-date">1 month ago</div></div></div>
+        <div class="gr-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="gr-text">Got home nursing service after my bypass surgery. The nurses were certified and experienced. They coordinated with my cardiologist and everything was smooth. Thank you Green Life!</div>
+      </div>
+      <div class="google-review-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="gr-header"><div class="gr-avatar" style="background:linear-gradient(135deg,#b71c1c,#e53935)">D</div><div><div class="gr-name">Deepa Ramesh</div><div class="gr-date">3 weeks ago</div></div></div>
+        <div class="gr-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="gr-text">Best home healthcare in Chennai! Very responsive team. Mr. Sridhar is very understanding and professional. The physiotherapy sessions helped my father walk again. God bless this team!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section">
+    <div class="section-header-center" data-aos="fade-up" style="margin-bottom:56px">
+      <span class="section-tag">Get In Touch</span>
+      <h2 class="section-title">Book Your <span>Appointment</span> Today</h2>
+      <p class="section-desc">Reach out to us anytime. Our care coordinators are available 24/7 to assist you and your family.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info" data-aos="fade-right">
+        <div class="contact-info-title">Contact Green Life Healthcare</div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <div><div class="contact-item-label">Call Us 24/7</div><div class="contact-item-val">+91 63839 15367</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div><div class="contact-item-label">Email</div><div class="contact-item-val">healthcaregreenlife3@gmail.com</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+          <div><div class="contact-item-label">Instagram</div><div class="contact-item-val">@gree_nlifehealth</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div><div class="contact-item-label">Office Address</div><div class="contact-item-val">No.11/25, Neels Garden 1st Street,<br>Perambur, Chennai – 600011</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-map"></i></div>
+          <div><div class="contact-item-label">Service Area</div><div class="contact-item-val">All Districts across Tamil Nadu</div></div>
+        </div>
+        <div class="contact-actions">
+          <a href="https://wa.me/916383915367?text=Hello%20Green%20Life%2C%20I%20want%20to%20book%20an%20appointment." class="c-action-btn c-wa" target="_blank"><i class="fab fa-whatsapp" style="font-size:20px"></i> Chat on WhatsApp — Book Now</a>
+          <a href="tel:+916383915367" class="c-action-btn c-call"><i class="fas fa-phone" style="font-size:18px"></i> Call: +91 63839 15367</a>
+        </div>
+      </div>
+      <div class="contact-form" data-aos="fade-left">
+        <div class="form-title">Schedule a Home Visit</div>
+        <div class="form-row">
+          <div class="form-group"><label>Your Name</label><input type="text" placeholder="Enter full name"></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+91 XXXXX XXXXX"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>City / District</label><input type="text" placeholder="Chennai, Madurai..."></div>
+          <div class="form-group"><label>Service Needed</label>
+            <select>
+              <option>Select Service</option>
+              <option>Nursing Care at Home</option>
+              <option>Physiotherapy</option>
+              <option>Post Operative Care</option>
+              <option>Geriatric / Elderly Care</option>
+              <option>Pediatric Care</option>
+              <option>Doctor Visit at Home</option>
+              <option>ICU Setup at Home</option>
+              <option>Mother & Child Care</option>
+              <option>Palliative Care</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Patient Condition (Brief)</label><textarea placeholder="Describe the patient's condition and care requirements..."></textarea></div>
+        <div class="form-group"><label>Preferred Date & Time</label><input type="datetime-local"></div>
+        <button class="form-submit" onclick="submitForm()"><i class="fas fa-paper-plane" style="margin-right:8px"></i> Send Appointment Request via WhatsApp</button>
+      </div>
+    </div>
+    <!-- MAP -->
+    <div class="map-section" data-aos="fade-up">
+      <div class="map-title">Find Us — Perambur, Chennai</div>
+      <div class="map-frame">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.1!2d80.2499!3d13.1154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265a07ce0f1d9%3A0x1234567890abcdef!2sNeels%20Garden%2C%20Perambur%2C%20Chennai%2C%20Tamil%20Nadu%20600011!5e0!3m2!1sen!2sin!4v1684000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <div class="footer-brand">🌿 Green Life Home Health Care</div>
+        <div class="footer-tagline">Leading The Way To Better Health</div>
+      </div>
+      <p class="footer-desc">Tamil Nadu's trusted home nursing and healthcare agency. Licensed professionals providing compassionate, hygienic, and expert care at your doorstep — 24/7 across Tamil Nadu.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/916383915367" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/gree_nlifehealth" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:healthcaregreenlife3@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+916383915367"><i class="fas fa-phone"></i></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services"><i class="fas fa-angle-right"></i>Nursing Care</a></li>
+        <li><a href="#services"><i class="fas fa-angle-right"></i>Physiotherapy</a></li>
+        <li><a href="#services"><i class="fas fa-angle-right"></i>Post-Op Care</a></li>
+        <li><a href="#services"><i class="fas fa-angle-right"></i>Elderly Care</a></li>
+        <li><a href="#services"><i class="fas fa-angle-right"></i>Pediatric Care</a></li>
+        <li><a href="#services"><i class="fas fa-angle-right"></i>ICU at Home</a></li>
+        <li><a href="#services"><i class="fas fa-angle-right"></i>Palliative Care</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="#about"><i class="fas fa-angle-right"></i>About Us</a></li>
+        <li><a href="#doctors"><i class="fas fa-angle-right"></i>Our Team</a></li>
+        <li><a href="#process"><i class="fas fa-angle-right"></i>How It Works</a></li>
+        <li><a href="#testimonials"><i class="fas fa-angle-right"></i>Testimonials</a></li>
+        <li><a href="#contact"><i class="fas fa-angle-right"></i>Contact</a></li>
+        <li><a href="https://wa.me/916383915367" target="_blank"><i class="fas fa-angle-right"></i>Book Appointment</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="tel:+916383915367"><i class="fas fa-phone"></i>+91 63839 15367</a></li>
+        <li><a href="mailto:healthcaregreenlife3@gmail.com"><i class="fas fa-envelope"></i>healthcaregreenlife3@gmail.com</a></li>
+        <li><a href="https://instagram.com/gree_nlifehealth" target="_blank"><i class="fab fa-instagram"></i>@gree_nlifehealth</a></li>
+        <li><a href="#contact"><i class="fas fa-map-marker-alt"></i>Perambur, Chennai – 11</a></li>
+        <li><a href="#contact"><i class="fas fa-map"></i>All Tamil Nadu Covered</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Green Life Home Health Care. All Rights Reserved. | Made with ❤️ for better health.</div>
+    <div class="footer-cert">
+      <span>Licensed Nursing Agency</span>
+      <span>Tamil Nadu Registered</span>
+      <span>ISO Compliant</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SERVICE MODALS -->
+<div class="modal-overlay" id="modal-nursing">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('nursing')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=85&auto=format&fit=crop" alt="Nursing Care">
+    <div class="modal-content">
+      <div class="modal-title">Nursing Care at Home</div>
+      <div class="modal-subtitle">🏥 Professional Nursing · 24/7 Available · Across Tamil Nadu</div>
+      <div class="modal-body">Our qualified B.Sc nurses provide comprehensive medical care at home. From daily medication management to complex wound dressing, IV therapy, catheter care, nasogastric tube management, and continuous vital monitoring — all delivered with clinical precision and deep compassion. Our nurses maintain strict hygiene protocols and communicate health updates to your doctor regularly.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Wound Dressing & Debridement</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> IV Therapy & Injections</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Catheter Care</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Vital Signs Monitoring</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Medication Management</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Ryle's Tube / NG Tube Care</div>
+      </div>
+      <div class="modal-process">
+        <div class="modal-process-title">How It Works</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-num">1</div><div class="modal-step-text"><div class="step-title">Contact & Consultation</div><div class="step-desc">Call or WhatsApp us. Our nurse coordinator will understand the patient's condition and needs within minutes.</div></div></div>
+          <div class="modal-step"><div class="modal-step-num">2</div><div class="modal-step-text"><div class="step-title">Nurse Assignment & Care Plan</div><div class="step-desc">We assign the best-suited certified nurse and create a personalized care protocol based on your doctor's advice.</div></div></div>
+          <div class="modal-step"><div class="modal-step-num">3</div><div class="modal-step-text"><div class="step-title">Home Visit & Care Begins</div><div class="step-desc">Nurse arrives at the scheduled time with all necessary equipment. Care begins with full hygiene protocols followed.</div></div></div>
+          <div class="modal-step"><div class="modal-step-num">4</div><div class="modal-step-text"><div class="step-title">Daily Reporting</div><div class="step-desc">Daily health reports and updates are shared with you and your doctor. Continuity of care is ensured.</div></div></div>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/916383915367?text=I%20need%20Nursing%20Care%20at%20Home.%20Please%20help%20me%20book%20an%20appointment." class="modal-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> Book via WhatsApp</a>
+        <a href="tel:+916383915367" class="modal-call-btn"><i class="fas fa-phone"></i> Call Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-physio">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('physio')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=85&auto=format&fit=crop" alt="Physiotherapy">
+    <div class="modal-content">
+      <div class="modal-title">Physiotherapy at Home</div>
+      <div class="modal-subtitle">🦾 Certified Physiotherapists · MPT Qualified · Rehabilitation Experts</div>
+      <div class="modal-body">Our certified physiotherapists bring hospital-grade rehabilitation to your home. Specializing in neurological recovery (post-stroke, Parkinson's), orthopedic rehabilitation (post-fracture, joint replacement), cardiac rehab, and pain management. Using evidence-based techniques to restore movement, reduce pain, and improve quality of life.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Stroke Rehabilitation</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Post-Fracture Recovery</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Joint Replacement Rehab</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Chronic Pain Management</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Balance & Gait Training</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Parkinson's Therapy</div>
+      </div>
+      <div class="modal-process">
+        <div class="modal-process-title">Rehabilitation Process</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-num">1</div><div class="modal-step-text"><div class="step-title">Initial Assessment</div><div class="step-desc">Physiotherapist visits home for a thorough assessment of mobility, strength, balance, and functional limitations.</div></div></div>
+          <div class="modal-step"><div class="modal-step-num">2</div><div class="modal-step-text"><div class="step-title">Customized Rehab Plan</div><div class="step-desc">A structured rehabilitation program is designed based on goals, condition, and recovery timeline.</div></div></div>
+          <div class="modal-step"><div class="modal-step-num">3</div><div class="modal-step-text"><div class="step-title">Regular Sessions</div><div class="step-desc">Scheduled therapy sessions at home. Progress tracked with measurable milestones every week.</div></div></div>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/916383915367?text=I%20need%20Physiotherapy%20at%20Home.%20Please%20assist%20me." class="modal-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> Book via WhatsApp</a>
+        <a href="tel:+916383915367" class="modal-call-btn"><i class="fas fa-phone"></i> Call Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-postop">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('postop')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=900&q=85&auto=format&fit=crop" alt="Post Op Care">
+    <div class="modal-content">
+      <div class="modal-title">Post Operative Care</div>
+      <div class="modal-subtitle">❤️‍🩹 Post-Surgery Recovery · Specialized Wound Care · Monitoring</div>
+      <div class="modal-body">Recovery after surgery requires expert attention. Our specialized post-operative nurses manage complex surgical wounds, drains, catheters, and pain — ensuring safe, infection-free recovery at home. We coordinate closely with your surgeon for optimal outcomes and faster recovery with minimal complications.</div>
+      <div class="modal-process">
+        <div class="modal-process-title">Post-Op Care Process</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-num">1</div><div class="modal-step-text"><div class="step-title">Discharge Planning</div><div class="step-desc">We coordinate with the hospital discharge team before you leave to prepare home care.</div></div></div>
+          <div class="modal-step"><div class="modal-step-num">2</div><div class="modal-step-text"><div class="step-title">First Day Visit</div><div class="step-desc">Nurse arrives on discharge day to assess wounds, manage drains, and set up care environment.</div></div></div>
+          <div class="modal-step"><div class="modal-step-num">3</div><div class="modal-step-text"><div class="step-title">Regular Follow-Up Care</div><div class="step-desc">Daily or scheduled visits for dressing changes, monitoring, and recovery progress reporting to your surgeon.</div></div></div>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/916383915367?text=I%20need%20Post%20Operative%20Care%20at%20Home." class="modal-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> Book via WhatsApp</a>
+        <a href="tel:+916383915367" class="modal-call-btn"><i class="fas fa-phone"></i> Call Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-elderly">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('elderly')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=85&auto=format&fit=crop" alt="Elderly Care">
+    <div class="modal-content">
+      <div class="modal-title">Geriatric & Elderly Care</div>
+      <div class="modal-subtitle">👴 Compassionate Senior Care · Chronic Disease Management · Dignity-Centered</div>
+      <div class="modal-body">Caring for aging parents or grandparents requires patience, expertise, and compassion. Our geriatric specialists provide daily personal care, chronic disease management, fall prevention, cognitive stimulation, and emotional companionship — while maintaining full dignity and respecting Tamil family values.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Daily Personal Hygiene</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Diabetes Management</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Dementia Support</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Fall Prevention</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Medication Reminders</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Companionship</div>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/916383915367?text=I%20need%20Elderly%20Care%20at%20Home%20for%20my%20family%20member." class="modal-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> Book via WhatsApp</a>
+        <a href="tel:+916383915367" class="modal-call-btn"><i class="fas fa-phone"></i> Call Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-pediatric">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('pediatric')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&q=85&auto=format&fit=crop" alt="Pediatric Care">
+    <div class="modal-content">
+      <div class="modal-title">Pediatric Care at Home</div>
+      <div class="modal-subtitle">👶 Gentle Child Care · Vaccination · Newborn Support</div>
+      <div class="modal-body">Children deserve specialized, gentle care. Our pediatric-trained nurses provide newborn care, child illness management, vaccination administration, growth monitoring, and developmental support — all at home. We work closely with your pediatrician to ensure complete, safe care for your little ones.</div>
+      <div class="modal-process">
+        <div class="modal-process-title">Pediatric Care Services</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-num">1</div><div class="modal-step-text"><div class="step-title">Newborn Care (0-3 months)</div><div class="step-desc">Bath, cord care, weight monitoring, feeding support, jaundice monitoring, and maternal guidance.</div></div></div>
+          <div class="modal-step"><div class="modal-step-num">2</div><div class="modal-step-text"><div class="step-title">Child Illness Management</div><div class="step-desc">Fever management, respiratory illness care, IV fluid administration, and recovery support at home.</div></div></div>
+          <div class="modal-step"><div class="modal-step-num">3</div><div class="modal-step-text"><div class="step-title">Vaccination at Home</div><div class="step-desc">Safe administration of all scheduled vaccines as per National Immunization Program guidelines.</div></div></div>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/916383915367?text=I%20need%20Pediatric%20Care%20at%20Home%20for%20my%20child." class="modal-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> Book via WhatsApp</a>
+        <a href="tel:+916383915367" class="modal-call-btn"><i class="fas fa-phone"></i> Call Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-doctor">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('doctor')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=900&q=85&auto=format&fit=crop" alt="Doctor Visit">
+    <div class="modal-content">
+      <div class="modal-title">Doctor's Visit at Home</div>
+      <div class="modal-subtitle">👨‍⚕️ Licensed Physicians · Acute · Chronic · Palliative · Primary Care</div>
+      <div class="modal-body">Our licensed doctors provide a wide range of medical care at your home. Whether you need a regular check-up, quick care for a common illness, specialized post-operative care, help with senior health needs, or compassionate palliative care — our doctor home visits offer individualized, personalized care catered to your unique health requirements and preferences.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Acute Care & Illness</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Palliative Care</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Post-Operative Check</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Elderly Health Management</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Regular Check-Ups</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Primary Care Visits</div>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/916383915367?text=I%20need%20a%20Doctor%20Visit%20at%20Home.%20Please%20assist%20me." class="modal-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> Book Doctor Visit</a>
+        <a href="tel:+916383915367" class="modal-call-btn"><i class="fas fa-phone"></i> Call Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-icu">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('icu')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1504439468489-c8920d796a29?w=900&q=85&auto=format&fit=crop" alt="ICU Home Setup">
+    <div class="modal-content">
+      <div class="modal-title">ICU Setup at Home</div>
+      <div class="modal-subtitle">🫀 Critical Care · Specialised Nurses · Full ICU Equipment</div>
+      <div class="modal-body">For patients requiring intensive care but preferring home environment, we provide complete ICU-grade setup including monitors, ventilators, suction machines, oxygen concentrators, and infusion pumps — managed by highly trained critical care nurses round the clock.</div>
+      <div class="modal-process">
+        <div class="modal-process-title">ICU Setup Process</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-num">1</div><div class="modal-step-text"><div class="step-title">Medical Assessment</div><div class="step-desc">Our critical care team assesses patient requirements and evaluates home suitability for ICU setup.</div></div></div>
+          <div class="modal-step"><div class="modal-step-num">2</div><div class="modal-step-text"><div class="step-title">Equipment Installation</div><div class="step-desc">Complete ICU equipment installed and configured. Safety protocols established by our technical team.</div></div></div>
+          <div class="modal-step"><div class="modal-step-num">3</div><div class="modal-step-text"><div class="step-title">24/7 Critical Care Nursing</div><div class="step-desc">Specialized ICU-trained nurses provide round-the-clock monitoring, support, and emergency response.</div></div></div>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/916383915367?text=I%20need%20ICU%20Setup%20at%20Home.%20Please%20enquire." class="modal-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> Enquire Now</a>
+        <a href="tel:+916383915367" class="modal-call-btn"><i class="fas fa-phone"></i> Call Emergency</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-mother">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('mother')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=900&q=85&auto=format&fit=crop" alt="Mother Child Care">
+    <div class="modal-content">
+      <div class="modal-title">Mother & Child Care</div>
+      <div class="modal-subtitle">🤱 Post-Natal · Newborn Nursing · Breastfeeding Support</div>
+      <div class="modal-body">The postpartum period is a critical and delicate time. Our trained maternal-newborn nurses provide complete support for new mothers — from post-natal recovery and breastfeeding guidance to newborn bathing, weight monitoring, cord care, and maternal emotional wellbeing. Rooted in South Indian family values with expert clinical care.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Post-Natal Wound Care</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Breastfeeding Support</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Newborn Daily Care</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Jaundice Monitoring</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Mother Nutrition Guidance</div>
+        <div style="background:var(--pale);padding:12px;border-radius:12px;font-size:13px;color:var(--text)"><strong>✓</strong> Baby Massage (Marma)</div>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/916383915367?text=I%20need%20Mother%20and%20Child%20Care%20at%20Home%20after%20delivery." class="modal-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> Book via WhatsApp</a>
+        <a href="tel:+916383915367" class="modal-call-btn"><i class="fas fa-phone"></i> Call Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-palliative">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('palliative')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1609743522471-83c84ce23e32?w=900&q=85&auto=format&fit=crop" alt="Palliative Care">
+    <div class="modal-content">
+      <div class="modal-title">Palliative Care at Home</div>
+      <div class="modal-subtitle">🕊️ Comfort-Focused · Pain Management · Family Support</div>
+      <div class="modal-body">Palliative care is about enhancing quality of life for patients facing serious illness. Our compassionate palliative care team focuses on managing pain, controlling symptoms, providing emotional support, and helping families navigate difficult times with grace, dignity, and love. Available for cancer patients, end-stage organ failure, and terminal conditions.</div>
+      <div class="modal-process">
+        <div class="modal-process-title">Our Approach to Palliative Care</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="modal-step-num">1</div><div class="modal-step-text"><div class="step-title">Holistic Assessment</div><div class="step-desc">Complete physical, psychological, and social assessment of the patient and family needs and wishes.</div></div></div>
+          <div class="modal-step"><div class="modal-step-num">2</div><div class="modal-step-text"><div class="step-title">Comfort-Centered Care Plan</div><div class="step-desc">Individualized plan focused on pain relief, symptom control, and maintaining dignity and independence.</div></div></div>
+          <div class="modal-step"><div class="modal-step-num">3</div><div class="modal-step-text"><div class="step-title">Family & Emotional Support</div><div class="step-desc">Counseling and guidance for family members. Grief support and coordination with spiritual/religious needs.</div></div></div>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/916383915367?text=I%20need%20Palliative%20Care%20at%20Home%20for%20my%20family%20member." class="modal-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> Enquire Now</a>
+        <a href="tel:+916383915367" class="modal-call-btn"><i class="fas fa-phone"></i> Call Us</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// LOADER
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('gone');
+    initAnimations();
+  }, 2200);
+});
+
+function initAnimations() {
+  AOS.init({ duration: 800, once: true, offset: 80 });
+  initTyping();
+  initCounters();
+  initTestimonials();
+  createParticles();
+  initGSAP();
+}
+
+// CURSOR
+const cursor = document.getElementById('cursor');
+const follower = document.getElementById('cursorFollower');
+let mx=0,my=0,fx=0,fy=0;
+document.addEventListener('mousemove', e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
+function animFollower(){fx+=(mx-fx)*.12;fy+=(my-fy)*.12;follower.style.left=fx+'px';follower.style.top=fy+'px';requestAnimationFrame(animFollower)}
+animFollower();
+document.querySelectorAll('a,button,.service-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.classList.add('hover');follower.classList.add('hover')});
+  el.addEventListener('mouseleave',()=>{cursor.classList.remove('hover');follower.classList.remove('hover')});
+});
+
+// NAVBAR
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', ()=>{
+  if(window.scrollY>80) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY>500);
+});
+
+// MOBILE MENU
+document.getElementById('hamburgerBtn').addEventListener('click',()=>{document.getElementById('mobileMenu').classList.add('open')});
+document.getElementById('mobileClose').addEventListener('click',()=>{document.getElementById('mobileMenu').classList.remove('open')});
+function closeMobileMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+
+// TYPING ANIMATION
+const typingLines = ['Nursing Care at Home','Physiotherapy Services','Post Operative Care','24/7 Healthcare Support','Elderly & Geriatric Care','Pediatric & Child Care','Doctor Visits at Home'];
+let tIdx=0, cIdx=0, deleting=false;
+function initTyping(){tick()}
+function tick(){
+  const el=document.getElementById('typingText');
+  const word=typingLines[tIdx];
+  if(!deleting){el.textContent=word.slice(0,++cIdx);if(cIdx===word.length){deleting=true;setTimeout(tick,1800);return}}
+  else{el.textContent=word.slice(0,--cIdx);if(cIdx===0){deleting=false;tIdx=(tIdx+1)%typingLines.length}}
+  setTimeout(tick, deleting?60:100);
+}
+
+// COUNTERS
+function initCounters(){
+  const counters=document.querySelectorAll('.counter');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const target=+e.target.dataset.target;
+        let cur=0;
+        const step=Math.ceil(target/60);
+        const timer=setInterval(()=>{cur=Math.min(cur+step,target);e.target.textContent=cur;if(cur>=target)clearInterval(timer)},30);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.5});
+  counters.forEach(c=>obs.observe(c));
+}
+
+// PARTICLES
+function createParticles(){
+  const container=document.getElementById('heroParticles');
+  for(let i=0;i<20;i++){
+    const p=document.createElement('div');
+    p.className='hero-particle';
+    const sz=Math.random()*12+4;
+    const left=Math.random()*100;
+    const dur=Math.random()*12+8;
+    const delay=Math.random()*10;
+    p.style.cssText=`width:${sz}px;height:${sz}px;left:${left}%;animation-duration:${dur}s;animation-delay:${delay}s`;
+    container.appendChild(p);
+  }
+}
+
+// TESTIMONIALS AUTO SLIDER
+let tSlide=0;
+const tCards=document.querySelectorAll('.testimonial-card');
+const dots=document.getElementById('testimonialDots');
+tCards.forEach((_,i)=>{const d=document.createElement('div');d.className='t-dot'+(i===0?' active':'');d.onclick=()=>goToSlide(i);dots.appendChild(d)});
+function slideTestimonials(dir){tSlide=Math.max(0,Math.min(tSlide+dir,tCards.length-1));updateSlider()}
+function goToSlide(i){tSlide=i;updateSlider()}
+function updateSlider(){
+  const card=tCards[0];const w=card.offsetWidth+28;
+  document.getElementById('testimonialsTrack').style.transform=`translateX(-${tSlide*(w)}px)`;
+  document.querySelectorAll('.t-dot').forEach((d,i)=>d.classList.toggle('active',i===tSlide));
+}
+setInterval(()=>{tSlide=(tSlide+1)%tCards.length;updateSlider()},4000);
+
+// MODALS
+function openModal(id){
+  const m=document.getElementById('modal-'+id);
+  m.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  document.getElementById('modal-'+id).classList.remove('active');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.modal-overlay').forEach(m=>{
+  m.addEventListener('click',e=>{if(e.target===m){const id=m.id.replace('modal-','');closeModal(id)}});
+});
+
+// GSAP
+function initGSAP(){
+  if(typeof gsap==='undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.from('.stat-card',{scrollTrigger:{trigger:'.stats-section',start:'top 80%'},y:40,opacity:0,stagger:.15,duration:.8,ease:'power3.out'});
+  gsap.from('.service-card',{scrollTrigger:{trigger:'#services',start:'top 70%'},y:50,opacity:0,stagger:.1,duration:.7,ease:'power2.out'});
+  gsap.to('.hero-leaf',{rotation:360,duration:30,repeat:-1,ease:'none',stagger:5});
+}
+
+// FORM SUBMIT
+function submitForm(){
+  const name=document.querySelector('input[placeholder="Enter full name"]').value;
+  const phone=document.querySelector('input[placeholder="+91 XXXXX XXXXX"]').value;
+  const service=document.querySelector('select').value;
+  const city=document.querySelector('input[placeholder="Chennai, Madurai..."]').value;
+  const msg=`Hello Green Life Healthcare,%0A%0AI would like to book an appointment.%0A%0AName: ${encodeURIComponent(name||'Not provided')}%0APhone: ${encodeURIComponent(phone||'Not provided')}%0ACity: ${encodeURIComponent(city||'Not provided')}%0AService: ${encodeURIComponent(service||'Not specified')}%0A%0APlease contact me at your earliest convenience.`;
+  window.open(`https://wa.me/916383915367?text=${msg}`,'_blank');
+}
+
+// SMOOTH PARALLAX HERO
+window.addEventListener('scroll',()=>{
+  const hero=document.getElementById('hero');
+  if(window.scrollY<window.innerHeight){
+    const parallax=window.scrollY*0.4;
+    hero.querySelector('.hero-bg-mesh').style.transform=`translateY(${parallax}px)`;
+  }
+});
+</script>
+</body>
+</html>
